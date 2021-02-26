@@ -1,6 +1,6 @@
 package com.changzakso.theplace.items;
 
-public class PlaceItem {
+public class ThePlace {
     public int id;
     public String name;
     public String description;

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.changzakso.theplace.R;
 import com.changzakso.theplace.data.Constant;
-import com.changzakso.theplace.items.PlaceItem;
+import com.changzakso.theplace.items.ThePlace;
 import com.changzakso.theplace.remote.RemoteService;
 import com.changzakso.theplace.utils.ChLog;
 import com.changzakso.theplace.utils.DialogManager;
@@ -28,7 +28,7 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
 
     private Context context;
     private int resource;
-    private ArrayList<PlaceItem> itemList;
+    private ArrayList<ThePlace> itemList;
 
 
     /**
@@ -37,7 +37,7 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
      * @param resource 아이템을 보여주기 위해 사용할 리소스 아이디
      * @param itemList 아이템 리스트
      */
-    public PlaceListAdapter(Context context, int resource, ArrayList<PlaceItem> itemList) {
+    public PlaceListAdapter(Context context, int resource, ArrayList<ThePlace> itemList) {
         this.context = context;
         this.resource = resource;
         this.itemList = itemList;
@@ -48,9 +48,9 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
      * 특정 아이템의 변경사항을 적용하기 위해 기본 아이템을 새로운 아이템으로 변경한다.
      * @param newItem 새로운 아이템
      */
-    public void setItem(PlaceItem newItem) {
+    public void setItem(ThePlace newItem) {
         for (int i=0; i < itemList.size(); i++) {
-            PlaceItem item = itemList.get(i);
+            ThePlace item = itemList.get(i);
 
             if (item.id == newItem.id) {
                 itemList.set(i, newItem);
@@ -64,7 +64,7 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
      * 현재 아이템 리스트에 새로운 아이템 리스트를 추가한다.
      * @param itemList 새로운 아이템 리스트
      */
-    public void addItemList(ArrayList<PlaceItem> itemList) {
+    public void addItemList(ArrayList<ThePlace> itemList) {
         this.itemList.addAll(itemList);
         notifyDataSetChanged();
     }
@@ -113,7 +113,7 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final PlaceItem item = itemList.get(position);
+        final ThePlace item = itemList.get(position);
         ChLog.d(TAG, "getView " + item);
 
 //        if (item.isKeep) {

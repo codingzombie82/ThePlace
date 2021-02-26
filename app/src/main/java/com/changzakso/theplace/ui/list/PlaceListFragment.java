@@ -23,7 +23,7 @@ import com.changzakso.theplace.R;
 import com.changzakso.theplace.adapter.EndlessRecyclerViewScrollListener;
 import com.changzakso.theplace.adapter.PlaceListAdapter;
 import com.changzakso.theplace.data.Constant;
-import com.changzakso.theplace.items.PlaceItem;
+import com.changzakso.theplace.items.ThePlace;
 import com.changzakso.theplace.remote.RemoteService;
 import com.changzakso.theplace.remote.ServiceGenerator;
 import com.changzakso.theplace.ui.gallery.GalleryViewModel;
@@ -140,7 +140,7 @@ public class PlaceListFragment extends Fragment implements View.OnClickListener 
         setLayoutManager(listTypeValue);
 
         placeListAdapter = new PlaceListAdapter(context,
-                R.layout.row_place_list, new ArrayList<PlaceItem>());
+                R.layout.row_place_list, new ArrayList<ThePlace>());
         placeListView.setAdapter(placeListAdapter);
 
         scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
@@ -208,12 +208,12 @@ public class PlaceListFragment extends Fragment implements View.OnClickListener 
     private void getListInfo(final int currentPage) {
         RemoteService remoteService = ServiceGenerator.createService(RemoteService.class);
 
-        Call<ArrayList<PlaceItem>> call = remoteService.getListInfo();
-        call.enqueue(new Callback<ArrayList<PlaceItem>>() {
+        Call<ArrayList<ThePlace>> call = remoteService.getListInfo();
+        call.enqueue(new Callback<ArrayList<ThePlace>>() {
             @Override
-            public void onResponse(Call<ArrayList<PlaceItem>> call,
-                                   Response<ArrayList<PlaceItem>> response) {
-                ArrayList<PlaceItem> list = response.body();
+            public void onResponse(Call<ArrayList<ThePlace>> call,
+                                   Response<ArrayList<ThePlace>> response) {
+                ArrayList<ThePlace> list = response.body();
 
                 if (response.isSuccessful() && list != null) {
                     placeListAdapter.addItemList(list);
@@ -228,7 +228,7 @@ public class PlaceListFragment extends Fragment implements View.OnClickListener 
             }
 
             @Override
-            public void onFailure(Call<ArrayList<PlaceItem>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<ThePlace>> call, Throwable t) {
                 ChLog.d(TAG, "no internet connectivity");
                 ChLog.d(TAG, t.toString());
             }
